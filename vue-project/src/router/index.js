@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Index from '../views/Index.vue'
 import Login from '../views/Login/Login.vue'
+import FrontPage from '../views/FrontPage/Index.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -12,6 +13,50 @@ const router = createRouter({
     {
       path: '/login',
       component: Login,
+    },
+    //前台页面
+    {
+      path: '/frontPage',
+      component: FrontPage,
+      redirect: '/IndexF', // 重定向到index路由
+      children: [
+        {
+          path: '/IndexF',
+          component: () => import('@/views/FrontPage/FirstPage.vue'),
+        },
+        {
+          path: '/category/shoes',
+          component: () => import('@/views/FrontPage/Shoes.vue'),
+        },
+        {
+          path: '/category/outerWear',
+          component: () => import('@/views/FrontPage/OuterWear.vue'),
+        },
+        {
+          path: '/category/cotta',
+          component: () => import('@/views/FrontPage/Cotta.vue'),
+        },
+        {
+          path: '/category/socks',
+          component: () => import('@/views/FrontPage/Socks.vue'),
+        },
+        {
+          path: '/category/hat',
+          component: () => import('@/views/FrontPage/Hat.vue'),
+        },
+        {
+          path: '/category/downJackets',
+          component: () => import('@/views/FrontPage/DownJackets.vue'),
+        },
+        {
+          path: '/category/downJackets',
+          component: () => import('@/views/FrontPage/DownJackets.vue'),
+        },
+        {
+          path: '/category/trousers',
+          component: () => import('@/views/FrontPage/Trousers.vue'),
+        },
+      ],
     },
     //首页
     {
@@ -40,7 +85,7 @@ const router = createRouter({
         {
           path: '/person/customer',
           component: () => import('@/views/Person/Customer.vue'),
-          meta: { hidden: true, title: '客服列表' },
+          meta: { hidden: true, title: '前台网页管理员列表' },
         },
         {
           path: '/person/admin',
@@ -79,12 +124,12 @@ const router = createRouter({
       component: Home,
       children: [
         {
-          path: '/oreder/issueOrder',
+          path: '/order/issueOrder',
           component: () => import('@/views/Order/IssueOrder.vue'),
           meta: { hidden: true, title: '出库订单' },
         },
         {
-          path: '/oreder/receiptOrder',
+          path: '/order/receiptOrder',
           component: () => import('@/views/Order/ReceiptOrder.vue'),
           meta: { hidden: true, title: '入库订单' },
         },
@@ -92,6 +137,11 @@ const router = createRouter({
           path: '/order/afterSalesOrder',
           component: () => import('@/views/Order/AfterSalesOrder.vue'),
           meta: { hidden: true, title: '售后订单' },
+        },
+        {
+          path: '/order/delivery',
+          component: () => import('@/views/Order/Delivery.vue'),
+          meta: { hidden: true, title: '配送方式管理' },
         },
       ],
     },
@@ -112,14 +162,14 @@ const router = createRouter({
           meta: { hidden: true, title: '轮播广告管理' },
         },
         {
-          path: '/reception/delivery',
-          component: () => import('@/views/Reception/Delivery.vue'),
-          meta: { hidden: true, title: '配送方式管理' },
-        },
-        {
           path: '/reception/comment',
           component: () => import('@/views/Reception/Comment.vue'),
           meta: { hidden: true, title: '评论管理' },
+        },
+        {
+          path: '/reception/recommend',
+          component: () => import('@/views/Reception/Recommend.vue'),
+          meta: { hidden: true, title: '推荐列表' },
         },
       ],
     },

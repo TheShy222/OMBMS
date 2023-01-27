@@ -14,7 +14,6 @@ exports.post = (req, res) => {
         msg: "登录成功",
         resultInfo:data
       })
-      console.log(data.length)
     }else{
       res.send({
         code: -1,

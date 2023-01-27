@@ -21,6 +21,7 @@
                       </template>
                   </el-input>
               </el-form-item>
+              <el-button type="success" @click="register" class="elreg">注册</el-button>
               <el-button type="primary" @click="bindLogin" class="elbt">登录
                   <span></span>
                   <span></span>
@@ -56,6 +57,9 @@ export default {
         }
     },
     methods: {
+        register(){
+            this.$router.push({path:'/frontPage'})
+        },
         bindLogin() {
             const formRef = this.$refs.loginFormRef
             formRef.validate(async valid => {
@@ -66,7 +70,6 @@ export default {
                             message: '登录成功!',
                             type: 'success',
                         })
-                        console.log(res.data)
                         // 1. 保存登录状态
                         this.$store.dispatch('loginAccount/save', res.data.resultInfo)
                         // 2. 跳转主界面
@@ -117,6 +120,9 @@ export default {
 
             .el-input {
                 width: 250px;
+            }
+            .elreg{
+                margin-left: 10px;
             }
 
             .elbt {

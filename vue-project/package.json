@@ -16,12 +16,16 @@
     "echarts": "^4.9.0",
     "element-plus": "2.1",
     "express": "^4.18.2",
+    "file-saver": "^2.0.5",
+    "lodash-es": "^4.17.21",
+    "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
     "nrm": "^1.2.5",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuex": "^4.0.2",
-    "vuex-persistedstate": "^4.1.0"
+    "vuex-persistedstate": "^4.1.0",
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

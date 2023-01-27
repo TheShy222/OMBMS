@@ -17,7 +17,7 @@ import router from './router'
  */
 router.beforeEach((to, from) => {
     // 1. 加入白名单: 有些路由是不需要登录身份认证 path: /login ,  /
-    if (to.path === '/login') {
+    if (to.path === '/login' || to.path==='/frontPage' || to.path==='/IndexF' ||to.path==='/category/shoes' || to.path==='/category/outerWear' || to.path==='/category/cotta' || to.path==='/category/socks' ||to.path==='/category/hat' ||to.path==='/category/downJackets' || to.path==='/category/trousers') {
         return true //放行
     }
     // 2. 登录认证

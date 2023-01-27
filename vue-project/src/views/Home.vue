@@ -6,14 +6,13 @@
         <el-image :src="url"></el-image>
         <h3 v-show="isCollapse">商城后台</h3>
       </div>
-      <p>首页</p>
       <Menu :isCollapse="isCollapse"></Menu>
     </el-aside>
     <!-- 右侧区域 -->
     <el-container>
       <!-- 头部区域 -->
       <el-header>
-        <el-icon size="25" @click="bindCollapse" class="iconChange">
+        <el-icon @click="bindCollapse" class="iconChange">
           <component :is="componentName"></component>
         </el-icon>
 
@@ -53,13 +52,13 @@
 <script>
 import BreadCrumb from '@/components/BreadCrumb.vue'
 import Menu from '@/components/Menu.vue'
-import { Fold, Expand } from '@element-plus/icons-vue'
+import { Fold, Expand} from '@element-plus/icons-vue'
 export default {
   components: {
     BreadCrumb,
     Menu,
-    Fold,
-    Expand
+    Expand,
+    Fold
   },
   data() {
     return {
@@ -102,7 +101,7 @@ export default {
   .el-aside {
     background-color: #2d3436;
     color: white;
-    transition: 0.5s;
+    transition: 0.6s;
 
     .g-title {
       display: flex;
@@ -132,11 +131,12 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 10px 20px;
-      background-color: rgb(118, 67, 236);
+      background:linear-gradient(120deg,red, orange, yellow, green, blue, indigo, violet);
       height: 60px;
 
       .iconChange {
         cursor: pointer;
+        font-size: 28px;
       }
 
       .g-header-r {
