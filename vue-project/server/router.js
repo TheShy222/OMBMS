@@ -1,5 +1,14 @@
 let express = require('express')
 let router = express.Router()
+const multer = require('multer')
+const storage = multer.diskStorage({
+	destination(req, res, cb) {
+		cb(null, '../public/uploads')//上传的地址
+	},
+	filename(req, file, cb) {
+		cb(null, Date.now() + '.jpg')//定义上传文件的名称
+	}
+})
 let login = require('./api/login/login.js')
 router.post('/login', login.post)
 let user = require('./api/user/user.js')
@@ -9,11 +18,13 @@ router.post('/editUser',editUser.post)
 let admin=require('./api/admin/admin.js')
 router.get('/adminsInfo',admin.get)
 let addAdmin=require('./api/admin/addAdmin.js')
-router.post('/addAdmin',addAdmin.post)
+let uploadAddHeadimg = multer({ storage }).single('headimg')//处理formdata数据中name为headimg的文件
+router.post('/addAdmin', uploadAddHeadimg, addAdmin.post)
 let deleAdmin=require('./api/admin/deleAdmin.js')
 router.get('/deleAdmin',deleAdmin.get)
 let editAdmin=require('./api/admin/editAdmin.js')
-router.post('/editAdmin',editAdmin.post)
+let uploadEditHeadimg = multer({ storage }).single('headimg')
+router.post('/editAdmin',uploadEditHeadimg,editAdmin.post)
 let goodsInfo=require('./api/goods/goodsInfo.js')
 router.get('/goodsInfo',goodsInfo.get)
 let goodsType=require('./api/goods/goodsType.js')

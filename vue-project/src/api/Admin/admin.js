@@ -15,9 +15,8 @@ export const RequestAddAdmin = (formData) => {
   return axiosInstance({
     method: 'post',
     url: '/addAdmin',
-    data: {
-      formData
-    }
+    headers: { "Content-Type": 'multipart/form-data'},
+    data: formData
   })
 }
 /**
@@ -39,9 +38,8 @@ export const RequestEditAdmin = (formData) => {
   return axiosInstance({
     method: 'post',
     url: '/editAdmin',
-    data: {
-      formData
-    }
+    headers: { "Content-Type": 'multipart/form-data'},
+    data: formData
   })
 }
 

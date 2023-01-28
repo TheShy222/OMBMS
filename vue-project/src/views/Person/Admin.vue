@@ -31,14 +31,12 @@
         <el-input v-model="admin.password"></el-input>
       </el-form-item>
       <el-form-item label="头像" prop="headimg">
-        <!-- <el-upload list-type="picture-card" action="http://127.0.0.1:8888/uploads" show-file-list="false"
-          :before-upload="beforeAvatarUpload">
+        <el-upload list-type="picture-card" action="#" show-file-list="false" :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar" />
           <el-icon v-else>
             <Plus />
           </el-icon>
-        </el-upload> -->
-        <el-input v-model="admin.headimg"></el-input>
+        </el-upload>
       </el-form-item>
       <el-form-item>
         <el-button type="success" @click="addAdmin">确定</el-button>
@@ -53,6 +51,14 @@
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="admin.password"></el-input>
+      </el-form-item>
+      <el-form-item label="头像" prop="headimg">
+        <el-upload list-type="picture-card" action="#" show-file-list="false" :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+          <el-icon v-else>
+            <Plus />
+          </el-icon>
+        </el-upload>
       </el-form-item>
       <el-form-item>
         <el-button type="success" @click="editAdmin">确定</el-button>
@@ -133,33 +139,28 @@ export default {
     add() {
       this.addShow = true
     },
-    addAdmin() {
-      // const formData = new FormData()
-      // formData.append('id',this.admin.id)
-      // formData.append('name',this.admin.name)
-      // formData.append('password',this.admin.password)
-      // formData.append('headimg', this.imageFile)
-      const addAdmin = this.$refs.addAdminRef
-      addAdmin.validate(async valid => {
-        const res = await RequestAddAdmin(this.admin)
-        if (valid) {
-          if (res.data.code == 1) {
-            ElMessage({
-              message: '添加管理员成功!',
-              type: 'success',
-            })
-            this.addShow = false
-            this.admin = {}
-            this.getAdminsList()
-          }
-        } else {
-          ElMessage({
-            message: '请输入相关信息!',
-            type: 'error',
-          })
-        }
-      })
-
+    async addAdmin() {
+      const formData = new FormData()
+      formData.append('id', this.admin.id)
+      formData.append('name', this.admin.name)
+      formData.append('password', this.admin.password)
+      formData.append('headimg', this.imageFile)
+      const res = await RequestAddAdmin(formData)
+      if (res.data.code == 1) {
+        ElMessage({
+          message: '添加管理员成功!',
+          type: 'success',
+        })
+        this.addShow = false
+        this.admin = {}
+        this.getAdminsList()
+      }
+      else {
+        ElMessage({
+          message: '请输入相关信息!',
+          type: 'error',
+        })
+      }
     },
     beforeAvatarUpload(rawFile) {
       const arr = ['image/jpeg', 'image/png', 'image/jpg']
@@ -201,10 +202,16 @@ export default {
     //编辑管理员
     edit(row) {
       this.admin = row
+      this.imageUrl=this.admin.headimg
       this.editShow = true
     },
     async editAdmin() {
-      const res = await RequestEditAdmin(this.admin)
+      const formData = new FormData()
+      formData.append('name', this.admin.name)
+      formData.append('password', this.admin.password)
+      formData.append('headimg', this.imageFile)
+      formData.append('id', this.admin.id)
+      const res = await RequestEditAdmin(formData)
       if (res.data.code == 1) {
         ElMessage({
           message: '修改管理员成功!',
