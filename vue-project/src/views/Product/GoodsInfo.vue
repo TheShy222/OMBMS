@@ -24,7 +24,7 @@
       <el-image :src="scope.row.picture" style="width: 100px; height: 100px">
       </el-image>
     </el-table-column>
-    <el-table-column align="center" prop="price" label="价格" width="80" />
+    <el-table-column align="center" prop="price" label="售价" width="80" />
     <el-table-column align="center" prop="detail" label="详情" width="200" />
     <el-table-column align="center" prop="reserve" label="库存" width="55" />
     <el-table-column align="center" label="操作" #default="scope" width="200">
@@ -65,7 +65,12 @@
         </el-select>
       </el-form-item>
       <el-form-item label="图片">
-        <el-input v-model="goodsInfo.picture"></el-input>
+        <el-upload list-type="picture-card" action="#" show-file-list="false" :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+          <el-icon v-else>
+            <Plus />
+          </el-icon>
+        </el-upload>
       </el-form-item>
       <el-form-item label="价格" prop="price">
         <el-input v-model="goodsInfo.price"></el-input>
@@ -97,7 +102,15 @@
           <el-option v-for="item in brandCategory" :key="item.id" :label="item.brandName" :value="item.brandName" />
         </el-select>
       </el-form-item>
-      <el-form-item label="价格" prop="price">
+      <el-form-item label="图片">
+        <el-upload list-type="picture-card" action="#" show-file-list="false" :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+          <el-icon v-else>
+            <Plus />
+          </el-icon>
+        </el-upload>
+      </el-form-item>
+      <el-form-item label="售价" prop="price">
         <el-input v-model="goodsInfo.price"></el-input>
       </el-form-item>
       <el-form-item label="详情" prop="detail">
@@ -151,7 +164,9 @@ export default {
       searchId: '',
       ids: '',
       newId: '',
-      newSize: ''
+      newSize: '',
+      imageUrl: '', //图片预览地址
+      imageFile: null //上传图片文件
     }
   },
   created() {
@@ -203,7 +218,17 @@ export default {
     },
     //添加商品
     async addGoods() {
-      const res = await RequestAddGoods(this.goodsInfo)
+      const formData = new FormData()
+      formData.append('goodsId', this.goodsInfo.goodsId)
+      formData.append('goodsShelves', this.goodsInfo.goodsShelves)
+      formData.append('type', this.goodsInfo.type)
+      formData.append('brand', this.goodsInfo.brand)
+      formData.append('size', this.goodsInfo.size)
+      formData.append('picture', this.imageFile)
+      formData.append('price', this.goodsInfo.price)
+      formData.append('detail', this.goodsInfo.detail)
+      formData.append('reserve', this.goodsInfo.reserve)
+      const res = await RequestAddGoods(formData)
       if (res.data.code == 1) {
         ElNotification({
           message: '添加商品成功',
@@ -212,6 +237,32 @@ export default {
         this.addShow = false
         this.getGoodsList()
       }
+    },
+    beforeAvatarUpload(rawFile) {
+      const arr = ['image/jpeg', 'image/png', 'image/jpg']
+      // 图片格式验证
+      if (!arr.includes(rawFile.type)) {
+        ElMessage({
+          message: '上传图片格式不正确！!',
+          type: 'error',
+        })
+        return false
+      }
+      // 图片大小验证
+      if (rawFile.size / 1024 / 1024 > 2) {
+        ElMessage({
+          message: '上传图片大小不能超过2M!',
+          type: 'error',
+        })
+        return false
+      }
+      // 图片预览
+      //1. 选中的本地图片转成Base64编码 赋值给 imageUrl
+      //2. FileReader 读文件
+      this.imageUrl = URL.createObjectURL(rawFile)
+      // 上传图片
+      this.imageFile = rawFile
+      return false // 不向下执行
     },
     //删除商品
     async deleteGoods(row) {
@@ -253,9 +304,20 @@ export default {
     edit(row) {
       this.editShow = true
       this.goodsInfo = row
+      this.imageUrl=this.goodsInfo.picture
     },
     async editGoods() {
-      const res = await RequestEditGoods(this.goodsInfo)
+      const formData = new FormData()
+      formData.append('goodsId', this.goodsInfo.goodsId)
+      formData.append('goodsShelves', this.goodsInfo.goodsShelves)
+      formData.append('type', this.goodsInfo.type)
+      formData.append('brand', this.goodsInfo.brand)
+      formData.append('size', this.goodsInfo.size)
+      formData.append('picture', this.imageFile)
+      formData.append('price', this.goodsInfo.price)
+      formData.append('detail', this.goodsInfo.detail)
+      formData.append('reserve', this.goodsInfo.reserve)
+      const res = await RequestEditGoods(formData)
       if (res.data.code == 1) {
         ElNotification({
           message: '编辑商品成功',
@@ -288,5 +350,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.avatar {
+  width: 150px;
+  height: 150px;
+  display: block;
+}
 </style>

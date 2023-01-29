@@ -1,9 +1,10 @@
 let db = require('../db/index.js')
 
 exports.post = (req, res) => {
-    let data = req.body
-    let picture = '/uploads/' + req.file.filename
-    let sql = `insert into goodsinfo values ('${data.goodsId}','${data.size}','${data.brand}','${picture}',${data.price},'${data.detail}',${data.reserve},${data.goodsShelves},'${data.type}')`
+    let id=req.body.id
+    let type=req.body.type
+    let sample='/uploads/' + req.file.filename
+    let sql = `insert into goodstype values (${id},'${type}','${sample}')`
     db.query(sql, (err, data) => {
         if(err) {
             return res.send('错误：' + err.message)

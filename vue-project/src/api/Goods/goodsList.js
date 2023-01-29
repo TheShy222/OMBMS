@@ -47,9 +47,8 @@ export const RequestAddGoods = (formData) => {
   return axiosInstance({
       method: 'post',
       url: '/addGoods',
-      data:{
-        formData
-      }
+      headers: { "Content-Type": 'multipart/form-data'},
+      data: formData
   })
 }
 /**
@@ -84,8 +83,41 @@ export const RequestEditGoods = (formData) => {
   return axiosInstance({
       method: 'post',
       url: '/editGoods',
-      data:{
-        formData
+      headers: { "Content-Type": 'multipart/form-data'},
+      data: formData
+  })
+}
+/**
+ * 添加商品种类接口
+ */
+export const RequestAddGoodsType = (formData) => {
+  return axiosInstance({
+      method: 'post',
+      url: '/addGoodsType',
+      headers: { "Content-Type": 'multipart/form-data'},
+      data: formData
+  })
+}
+/**
+ * 编辑商品种类接口
+ */
+export const RequestEditGoodsType = (formData) => {
+  return axiosInstance({
+      method: 'post',
+      url: '/editGoodsType',
+      headers: { "Content-Type": 'multipart/form-data'},
+      data: formData
+  })
+}
+/**
+ * 编辑商品种类接口
+ */
+export const RequestDeleteGoodsType = (id) => {
+  return axiosInstance({
+      method: 'get',
+      url: '/deleteGoodsType',
+      params:{
+        id
       }
   })
 }

@@ -112,7 +112,7 @@ const router = createRouter({
         },
         {
           path: '/product/goodsCategory',
-          component: () => import('@/views/Product/GoodsInfo.vue'),
+          component: () => import('@/views/Product/GoodsCategory.vue'),
           meta: { hidden: true, title: '商品分类' },
         },
       ],
