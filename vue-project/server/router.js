@@ -9,24 +9,36 @@ const storage = multer.diskStorage({
 		cb(null, Date.now() + '.jpg')//定义上传文件的名称
 	}
 })
+//登录模块
 let login = require('./api/login/login.js')
 router.post('/login', login.post)
+//用户模块
 let user = require('./api/user/user.js')
 router.get('/usersInfo', user.get)
+
+let addUser = require('./api/user/addUser.js')
+router.post('/addUser', addUser.post)
+
 let editUser = require('./api/user/editUser.js')
 router.post('/editUser', editUser.post)
+//系统管理员模块
 let admin = require('./api/admin/admin.js')
 router.get('/adminsInfo', admin.get)
+
 let addAdmin = require('./api/admin/addAdmin.js')
 let uploadAddHeadimg = multer({ storage }).single('headimg')
+
 router.post('/addAdmin', uploadAddHeadimg, addAdmin.post)
 let deleAdmin = require('./api/admin/deleAdmin.js')
 router.get('/deleAdmin', deleAdmin.get)
+
 let editAdmin = require('./api/admin/editAdmin.js')
 let uploadEditHeadimg = multer({ storage }).single('headimg')
 router.post('/editAdmin', uploadEditHeadimg, editAdmin.post)
+//商品模块
 let goodsInfo = require('./api/goods/goodsInfo.js')
 router.get('/goodsInfo', goodsInfo.get)
+
 let goodsType = require('./api/goods/goodsType.js')
 router.get('/goodsType', goodsType.get)
 
@@ -43,36 +55,80 @@ router.get('/deleteGoodsType', deleteGoodsType.get)
 
 let goodsBrandType = require('./api/goods/goodsBrandType.js')
 router.get('/goodsBrandType', goodsBrandType.get)
+
 let goodsShow = require('./api/goods/goodsShow.js')
 router.get('/goodsShow', goodsShow.get)
+
 let goodsSizeType = require('./api/goods/goodsSizeType.js')
 router.get('/goodsSizeType', goodsSizeType.get)
+
 let addGoods = require('./api/goods/addGoods.js')
 let uploadAddPicture = multer({ storage }).single('picture')
 router.post('/addGoods', uploadAddPicture, addGoods.post)
+
 let deleteGoods = require('./api/goods/deleteGoods.js')
 router.get('/deleteGoods', deleteGoods.get)
+
 let batchDeleteGoods = require('./api/goods/batchDeleteGoods.js')
 router.get('/batchDeleteGoods', batchDeleteGoods.get)
+
 let editGoods = require('./api/goods/editGoods.js')
 let uploadEditPicture = multer({ storage }).single('picture')
 router.post('/editGoods', uploadEditPicture, editGoods.post)
+//订单模块
 let issueOrder = require('./api/order/issueOrder.js')
 router.get('/issueOrder', issueOrder.get)
+
 let addIssueOrder = require('./api/order/addIssueOrder.js')
 router.post('/addIssueOrder', addIssueOrder.post)
+
 let getIssueOrderState = require('./api/order/getIssueOrderState.js')
 router.get('/getIssueOrderState', getIssueOrderState.get)
+
 let issueOrderStateChange = require('./api/order/issueOrderStateChange.js')
 router.post('/issueOrderStateChange', issueOrderStateChange.post)
+
 let editIssueOrder = require('./api/order/editIssueOrder.js')
 router.post('/editIssueOrder', editIssueOrder.post)
+
 let goodsNumberChange = require('./api/order/goodsNumberChange.js')
 router.post('/goodsNumberChange', goodsNumberChange.post)
+
 let getExpressType = require('./api/order/expressType.js')
 router.get('/getExpressType', getExpressType.get)
+
 let getCarousel = require('./api/carousel/carousel.js')
 router.get('/getCarousel', getCarousel.get)
+
+let addCarousel = require('./api/carousel/addCarousel.js')
+let uploadAddUrl = multer({ storage }).single('url')
+router.post('/addCarousel', uploadAddUrl,addCarousel.post)
+
+let deleteCarousel = require('./api/carousel/deleteCarousel.js')
+router.get('/deleteCarousel', deleteCarousel.get)
+
+let editCarousel = require('./api/carousel/editCarousel.js')
+let uploadEditUrl = multer({ storage }).single('url')
+router.post('/editCarousel', uploadEditUrl,editCarousel.post)
+
 let getRecommend = require('./api/recommend/recommend.js')
 router.get('/getRecommend', getRecommend.get)
+
+let addFile = require('./api/notice/addFile.js')
+router.post('/addFile',addFile.post)
+//前台管理员模块
+let getReceptionAdmin = require('./api/receptionAdmin/getReceptionAdmin.js')
+router.get('/getReceptionAdmin',getReceptionAdmin.get)
+
+let addReceptionAdmin = require('./api/receptionAdmin/addReceptionAdmin.js')
+let uploadAddAdminimg = multer({ storage }).single('adminimg')
+router.post('/addReceptionAdmin',uploadAddAdminimg,addReceptionAdmin.post)
+
+let editReceptionAdmin = require('./api/receptionAdmin/editReceptionAdmin.js')
+let uploadEditAdminimg = multer({ storage }).single('adminimg')
+router.post('/editReceptionAdmin',uploadEditAdminimg,editReceptionAdmin.post)
+
+let deleteReceptionAdmin = require('./api/receptionAdmin/deleteReceptionAdmin.js')
+router.delete('/deleteReceptionAdmin',deleteReceptionAdmin.delete)
+
 module.exports = router

@@ -5,8 +5,7 @@ exports.post=(req,res)=>{
     let pass=req.body.password
     let id=req.body.id
     let headimg = '/uploads/' + req.file.filename
-    let sql=`update loginInfo set name='${name}',password='${pass}',headimg='${headimg}' where id='${id}'`
-    console.log(sql)
+    let sql=`update loginInfo set name='${name}',password='${pass}',headimg='${headimg}' where id=${id}`
     db.query(sql,(err,data)=>{
       if (err) {
         return res.send('错误：' + err.message)

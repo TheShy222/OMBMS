@@ -6,32 +6,36 @@
     </el-col>
   </el-row>
   <el-table :data="list" style="width: 100%">
-    <el-table-column prop="id" label="ID" />
-    <el-table-column label="头像" #default="scope">
+    <el-table-column align="center" prop="id" label="ID" />
+    <el-table-column align="center" label="头像" #default="scope">
       <el-image :src="scope.row.headimg">
       </el-image>
     </el-table-column>
-    <el-table-column prop="name" label="账号" />
-    <el-table-column prop="password" label="密码" />
-    <el-table-column label="操作" #default="scope">
+    <el-table-column align="center" prop="name" label="账号" />
+    <el-table-column align="center" prop="password" label="密码" />
+    <el-table-column align="center" label="操作" #default="scope">
       <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
-      <el-button type="danger" @click="dele(scope.row)">删除</el-button>
+      <el-popconfirm title="确认要删除此记录吗?" @confirm="dele(scope.row)">
+        <template #reference>
+          <el-button type="danger">删除</el-button>
+        </template>
+      </el-popconfirm>
     </el-table-column>
   </el-table>
   <!-- 添加弹框 -->
   <el-dialog title="添加系统管理员" v-model="addShow" width="40%">
-    <el-form :model="admin" :rules="rules" label-width="80px" ref="addAdminRef">
-      <el-form-item label="ID" prop="id">
+    <el-form :model="admin" label-width="80px">
+      <el-form-item label="ID">
         <el-input v-model="admin.id"></el-input>
       </el-form-item>
-      <el-form-item label="账号" prop="name">
+      <el-form-item label="账号">
         <el-input v-model="admin.name"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item label="密码">
         <el-input v-model="admin.password"></el-input>
       </el-form-item>
-      <el-form-item label="头像" prop="headimg">
-        <el-upload list-type="picture-card" action="#" show-file-list="false" :before-upload="beforeAvatarUpload">
+      <el-form-item label="头像">
+        <el-upload list-type="picture-card" :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar" />
           <el-icon v-else>
             <Plus />
@@ -45,15 +49,15 @@
   </el-dialog>
   <!-- 编辑弹框 -->
   <el-dialog title="编辑系统管理员" v-model="editShow" width="40%">
-    <el-form :model="admin" :rules="rules" label-width="80px">
-      <el-form-item label="账号" prop="name">
+    <el-form :model="admin" label-width="80px">
+      <el-form-item label="账号">
         <el-input v-model="admin.name"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item label="密码">
         <el-input v-model="admin.password"></el-input>
       </el-form-item>
-      <el-form-item label="头像" prop="headimg">
-        <el-upload list-type="picture-card" action="#" show-file-list="false" :before-upload="beforeAvatarUpload">
+      <el-form-item label="头像">
+        <el-upload list-type="picture-card" :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar" />
           <el-icon v-else>
             <Plus />
@@ -83,36 +87,6 @@ export default {
         password: '',
         headimg: ''
       },
-      rules: {
-        id: [
-          {
-            required: true,
-            message: '请输入ID',
-            trigger: 'blur',
-          },
-        ],
-        name: [
-          {
-            required: true,
-            message: '请输入账号',
-            trigger: 'blur'
-          },
-        ],
-        password: [
-          {
-            required: true,
-            message: '请输入密码',
-            trigger: 'blur',
-          },
-        ],
-        headimg: [
-          {
-            required: true,
-            message: '请输入头像',
-            trigger: 'blur'
-          },
-        ],
-      },
       list: [],
       addShow: false,
       editShow: false,
@@ -121,7 +95,7 @@ export default {
     }
   },
   created() {
-    this.getAdminsList()
+    this.refresh()
   },
   methods: {
     //获取管理员信息
@@ -134,6 +108,10 @@ export default {
     //刷新
     refresh() {
       this.getAdminsList()
+      this.addShow = false
+      this.editShow = false
+      this.imageUrl=''
+      this.admin = {}
     },
     //添加管理员
     add() {
@@ -151,13 +129,11 @@ export default {
           message: '添加管理员成功!',
           type: 'success',
         })
-        this.addShow = false
-        this.admin = {}
-        this.getAdminsList()
+        this.refresh()
       }
       else {
         ElMessage({
-          message: '请输入相关信息!',
+          message: '请输入相关信息或ID已存在!',
           type: 'error',
         })
       }
@@ -197,12 +173,12 @@ export default {
           type: 'success',
         })
       }
-      this.getAdminsList()
+      this.refresh()
     },
     //编辑管理员
     edit(row) {
       this.admin = row
-      this.imageUrl=this.admin.headimg
+      this.imageUrl = this.admin.headimg
       this.editShow = true
     },
     async editAdmin() {
@@ -218,9 +194,7 @@ export default {
           type: 'success',
         })
       }
-      this.editShow = false
-      this.admin = {}
-      this.getAdminsList()
+      this.refresh()
     }
   }
 }

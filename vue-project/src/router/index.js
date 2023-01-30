@@ -83,8 +83,8 @@ const router = createRouter({
           meta: { hidden: true, title: '用户列表' },
         },
         {
-          path: '/person/customer',
-          component: () => import('@/views/Person/Customer.vue'),
+          path: '/person/receptionAdmin',
+          component: () => import('@/views/Person/ReceptionAdmin.vue'),
           meta: { hidden: true, title: '前台网页管理员列表' },
         },
         {

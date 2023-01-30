@@ -62,7 +62,7 @@ export default {
   },
   data() {
     return {
-      url: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+      url: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K',
       isCollapse: true,
       asideWidth: '200px',
       componentName: Fold
@@ -99,7 +99,7 @@ export default {
   height: 100vh;
 
   .el-aside {
-    background-color: #2d3436;
+    background-color:#262424;
     color: white;
     transition: 0.6s;
 
@@ -131,7 +131,7 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 10px 20px;
-      background:linear-gradient(120deg,red, orange, yellow, green, blue, indigo, violet);
+      background-color:#262424;
       height: 60px;
 
       .iconChange {
