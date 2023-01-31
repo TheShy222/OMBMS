@@ -80,22 +80,22 @@ const router = createRouter({
         {
           path: '/person/user',
           component: () => import('@/views/Person/User.vue'),
-          meta: { hidden: true, title: '用户列表' },
+          meta: { hidden: true, title: '用户' },
         },
         {
           path: '/person/receptionAdmin',
           component: () => import('@/views/Person/ReceptionAdmin.vue'),
-          meta: { hidden: true, title: '前台网页管理员列表' },
+          meta: { hidden: true, title: '前台网页管理员' },
         },
         {
           path: '/person/admin',
           component: () => import('@/views/Person/Admin.vue'),
-          meta: { hidden: true, title: '管理员列表' },
+          meta: { hidden: true, title: '系统管理员' },
         },
         {
           path: '/person/supplier',
           component: () => import('@/views/Person/Supplier.vue'),
-          meta: { hidden: true, title: '供应商列表' },
+          meta: { hidden: true, title: '供应商' },
         },
       ],
     },

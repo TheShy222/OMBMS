@@ -96,7 +96,7 @@ router.post('/goodsNumberChange', goodsNumberChange.post)
 
 let getExpressType = require('./api/order/expressType.js')
 router.get('/getExpressType', getExpressType.get)
-
+//轮播模块
 let getCarousel = require('./api/carousel/carousel.js')
 router.get('/getCarousel', getCarousel.get)
 
@@ -110,10 +110,10 @@ router.get('/deleteCarousel', deleteCarousel.get)
 let editCarousel = require('./api/carousel/editCarousel.js')
 let uploadEditUrl = multer({ storage }).single('url')
 router.post('/editCarousel', uploadEditUrl,editCarousel.post)
-
+//推荐模块
 let getRecommend = require('./api/recommend/recommend.js')
 router.get('/getRecommend', getRecommend.get)
-
+//公告模块
 let addFile = require('./api/notice/addFile.js')
 router.post('/addFile',addFile.post)
 //前台管理员模块
@@ -130,5 +130,16 @@ router.post('/editReceptionAdmin',uploadEditAdminimg,editReceptionAdmin.post)
 
 let deleteReceptionAdmin = require('./api/receptionAdmin/deleteReceptionAdmin.js')
 router.delete('/deleteReceptionAdmin',deleteReceptionAdmin.delete)
+//供应商模块
+let getSupplier = require('./api/supplier/supplier.js')
+router.get('/getSupplier',getSupplier.get)
 
+let addSupplier = require('./api/supplier/addSupplier.js')
+router.post('/addSupplier',addSupplier.post)
+
+let deleteSupplier = require('./api/supplier/deleteSupplier.js')
+router.delete('/deleteSupplier',deleteSupplier.delete)
+
+let editSupplier = require('./api/supplier/editSupplier.js')
+router.put('/editSupplier',editSupplier.put)
 module.exports = router
