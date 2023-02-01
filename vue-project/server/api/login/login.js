@@ -3,7 +3,15 @@ let db = require('../db/index.js')
 exports.post = (req, res) => {
   let name = req.body.name
   let pass = req.body.password
-  let sql = `select * from loginInfo where name="${name}" and password="${pass}"`
+  let identity=req.body.identity
+  let sql=''
+  if(identity==0){
+    sql = `select * from logininfo where name="${name}" and password="${pass}"`
+  }else if(identity==1){
+    sql = `select * from receptionadmin where name="${name}" and password="${pass}"`
+  }else{
+    sql = `select * from superadmin where name="${name}" and password="${pass}"`
+  }
   db.query(sql, (err, data) => {
     if (err) {
       return res.send('错误：' + err.message)

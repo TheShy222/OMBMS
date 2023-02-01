@@ -179,7 +179,7 @@ export default {
     edit(row) {
       this.admin = row
       this.imageUrl = this.admin.headimg
-      this.editShow = true
+      this.editShow = true               
     },
     async editAdmin() {
       const formData = new FormData()
