@@ -1,6 +1,7 @@
 let express = require('express')
 let app = express()
 let cors = require('cors')
+app.use(express.static('public'))
 let bodyParser = require('body-parser')
 let router = require('./router.js')
 app.use(bodyParser.json());  //配置解析，用于解析json和urlencoded格式的数据

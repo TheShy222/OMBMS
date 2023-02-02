@@ -4,7 +4,7 @@ exports.post = (req, res) => {
   let id = req.body.id
   let name = req.body.name
   let pass = req.body.password
-  let adminimg = '/uploads/' + req.file.filename
+  let adminimg = 'http://localhost:8888/uploads/' + req.file.filename
   let sql = `update receptionadmin set name='${name}',password='${pass}',adminimg='${adminimg}' where id=${id}`
   db.query(sql, (err, data) => {
     if (err) {

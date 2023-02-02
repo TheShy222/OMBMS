@@ -2,7 +2,7 @@ let db = require('../db/index.js')
 
 exports.post = (req, res) => {
     let data = req.body
-    let picture = '/uploads/' + req.file.filename
+    let picture = 'http://localhost:8888/uploads/' + req.file.filename
     let sql = `insert into goodsinfo values ('${data.goodsId}','${data.size}','${data.brand}','${picture}',${data.price},'${data.detail}',${data.reserve},${data.goodsShelves},'${data.type}')`
     db.query(sql, (err, data) => {
         if(err) {

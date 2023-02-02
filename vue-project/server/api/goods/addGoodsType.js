@@ -3,7 +3,7 @@ let db = require('../db/index.js')
 exports.post = (req, res) => {
     let id=req.body.id
     let type=req.body.type
-    let sample='/uploads/' + req.file.filename
+    let sample='http://localhost:8888/uploads/' + req.file.filename
     let sql = `insert into goodstype values (${id},'${type}','${sample}')`
     db.query(sql, (err, data) => {
         if(err) {

@@ -3,7 +3,7 @@ let router = express.Router()
 const multer = require('multer')
 const storage = multer.diskStorage({
 	destination(req, res, cb) {
-		cb(null, '../public/uploads')//上传的地址
+		cb(null, './public/uploads')//上传的地址
 	},
 	filename(req, file, cb) {
 		cb(null, Date.now() + '.jpg')//定义上传文件的名称

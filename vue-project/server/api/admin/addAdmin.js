@@ -3,7 +3,7 @@ exports.post = (req, res) => {
   let id = req.body.id
   let name = req.body.name
   let pass = req.body.password
-  let headimg = '/uploads/' + req.file.filename
+  let headimg = 'http://localhost:8888/uploads/' + req.file.filename
   let sql = `insert into loginInfo values (${id},'${name}','${pass}','${headimg}','系统管理员')`
   db.query(sql, (err, data) => {
     if (err) {
