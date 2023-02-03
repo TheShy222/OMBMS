@@ -1,15 +1,15 @@
 let db = require('../db/index.js')
 
 exports.get = (req, res) => {
-    let type=req.query.type
-    let sql = `select * from goodsinfo where type='${type}'`
+    let categoryId = req.query.categoryId
+    let sql = `select * from goodsinfo where type=(select type from goodstype where id=${categoryId})`
     db.query(sql, (err, data) => {
-        if(err) {
+        if (err) {
             return res.send('错误：' + err.message)
         }
         res.send({
-            code:1,
-            list:data
+            code: 1,
+            list: data
         })
     })
 }

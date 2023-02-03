@@ -15,6 +15,7 @@
   </el-row>
   <el-table :data="list" style="width: 100%" @selection-change="handleSelectionChange">
     <el-table-column type="selection" width="55" />
+    <el-table-column align="center" prop="id" label="ID" width="50" />
     <el-table-column align="center" prop="goodsId" label="货号" width="120" />
     <el-table-column align="center" prop="goodsShelves" label="货架号" width="80" />
     <el-table-column align="center" prop="type" label="种类" width="100" />
@@ -27,7 +28,7 @@
     <el-table-column align="center" prop="price" label="售价" width="80" />
     <el-table-column align="center" prop="detail" label="详情" width="200" />
     <el-table-column align="center" prop="reserve" label="库存" width="55" />
-    <el-table-column align="center" label="操作" #default="scope" width="200">
+    <el-table-column align="center" label="操作" #default="scope" width="180">
       <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
       <el-popconfirm title="确认要删除此记录吗?" @confirm="deleteGoods(scope.row)">
         <template #reference>
@@ -43,6 +44,9 @@
   <!-- 添加的弹框 -->
   <el-dialog title="添加商品" v-model="addShow" width="40%">
     <el-form :model="goodsInfo" label-width="80px">
+      <el-form-item label="ID" prop="id">
+        <el-input v-model="goodsInfo.id"></el-input>
+      </el-form-item>
       <el-form-item label="货号" prop="goodsId">
         <el-input v-model="goodsInfo.goodsId"></el-input>
       </el-form-item>
@@ -142,6 +146,7 @@ export default {
   data() {
     return {
       goodsInfo: {
+        id:'',
         goodsId: '',
         goodsShelves: '',
         type: '',
@@ -162,9 +167,7 @@ export default {
       pageSize: '10',
       pageNo: '1',
       searchId: '',
-      ids: '',
-      newId: '',
-      newSize: '',
+      ids: '',//批量删除的id
       imageUrl: '', //图片预览地址
       imageFile: null //上传图片文件
     }
@@ -214,11 +217,17 @@ export default {
     },
     //刷新
     refresh() {
+      this.addShow=false
+      this.editShow=false
       this.getGoodsList()
+      this.ids=''
+      this.goodsInfo={}
+      this.imageUrl=''
     },
     //添加商品
     async addGoods() {
       const formData = new FormData()
+      formData.append('id', this.goodsInfo.id)
       formData.append('goodsId', this.goodsInfo.goodsId)
       formData.append('goodsShelves', this.goodsInfo.goodsShelves)
       formData.append('type', this.goodsInfo.type)
@@ -234,8 +243,7 @@ export default {
           message: '添加商品成功',
           type: 'success',
         })
-        this.addShow = false
-        this.getGoodsList()
+        this.refresh()
       }
     },
     beforeAvatarUpload(rawFile) {
@@ -266,23 +274,22 @@ export default {
     },
     //删除商品
     async deleteGoods(row) {
-      this.newId = row.goodsId
-      this.newSize = row.size
-      const res = await RequestDeleteGoods(this.newId, this.newSize)
+      const res = await RequestDeleteGoods(row.id)
       if (res.data.code == 1) {
         ElNotification({
           message: '删除商品成功',
           type: 'success',
         })
-        this.getGoodsList()
+        this.refresh()
       }
     },
     //多选
     handleSelectionChange(value) { // [{id:10,name:''}] => [10,12,34] => '10,12,34'
-      const list = value.map(item => item.goodsShelves)
+      const list = value.map(item => item.id)
       const ids = list.join(',')
       this.ids = ids
     },
+    //批量删除
     async bindBatchDelete() {
       if (this.ids == '') {
         ElMessage({
@@ -297,7 +304,7 @@ export default {
           message: '批量删除商品成功',
           type: 'success',
         })
-        this.getGoodsList()
+        this.refresh()
       }
     },
     //编辑商品
@@ -308,6 +315,7 @@ export default {
     },
     async editGoods() {
       const formData = new FormData()
+      formData.append('id', this.goodsInfo.id)
       formData.append('goodsId', this.goodsInfo.goodsId)
       formData.append('goodsShelves', this.goodsInfo.goodsShelves)
       formData.append('type', this.goodsInfo.type)
@@ -323,15 +331,15 @@ export default {
           message: '编辑商品成功',
           type: 'success',
         })
-        this.editShow = false
       }
-      this.getGoodsList()
+      this.refresh()
     },
     //导出excel
     bindExcelExport() {
       excelExport2(
         this.list,
         {
+          id:'ID',
           goodsId: '货号',
           goodsShelves: '货架号',
           type: '商品种类',
@@ -353,6 +361,5 @@ export default {
 .avatar {
   width: 150px;
   height: 150px;
-  display: block;
 }
 </style>

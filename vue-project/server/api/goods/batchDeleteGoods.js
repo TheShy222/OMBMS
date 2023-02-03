@@ -1,7 +1,7 @@
 let db = require('../db/index.js')
 exports.get = (req, res) => {
   let ids = req.query.ids
-  let sql = `delete from goodsinfo where goodsShelves in (${ids})`
+  let sql = `delete from goodsinfo where id in (${ids})`
   db.query(sql, (err, data) => {
     if (err) {
       return res.send('错误：' + err.message)
