@@ -27,12 +27,10 @@
                 <el-dropdown-item @click="bindUser"><el-icon>
                     <User />
                   </el-icon>个人中心</el-dropdown-item>
-                <el-dropdown-item @click="bindLogin"><el-icon>
-                    <Refresh />
-                  </el-icon>切换用户</el-dropdown-item>
-                <el-dropdown-item @click="bindExit"><el-icon>
-                    <Close />
-                  </el-icon>退出登录</el-dropdown-item>
+                <el-dropdown-item @click="bindChange">
+                  <el-icon><Lock /></el-icon>修改密码</el-dropdown-item>
+                <el-dropdown-item @click="bindExit">
+                  <el-icon><SwitchButton /></el-icon>退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -70,11 +68,7 @@ export default {
     }
   },
   mounted () {
-    if(this.admin[0].job=='系统管理员'){
-      this.job=this.admin[0].headimg
-    }else{
-      this.job=this.admin[0].adminimg
-    }
+    this.job=this.admin[0].headimg
   },
   computed: {
     admin() {
@@ -91,11 +85,11 @@ export default {
       localStorage.removeItem('loginAccount')
       this.$router.replace({ path: '/login' })
     },
-    bindLogin() {
-      this.$router.replace({ path: '/login' })
+    bindChange() {
+      this.$router.replace({ path: '/change' })
     },
     bindUser() {
-      // this.$router.replace({ path: '/user' })
+      this.$router.push({ path: '/person/personal'})
     },
   },
 }

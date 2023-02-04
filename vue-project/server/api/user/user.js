@@ -5,7 +5,7 @@ exports.get = (req, res) => {
     let asc = req.query.asc
     let desc = req.query.desc
     if (id) {
-        sql = `select * from userinfo where id=${id}`
+        sql = `select * from userinfo where phoneNumber='${id}'`
     }
     else if (asc) {
         sql = `select * from userinfo order by integral asc`

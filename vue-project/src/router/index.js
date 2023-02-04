@@ -83,19 +83,25 @@ const router = createRouter({
           meta: { hidden: true, title: '用户' },
         },
         {
-          path: '/person/receptionAdmin',
-          component: () => import('@/views/Person/ReceptionAdmin.vue'),
-          meta: { hidden: true, title: '前台网页管理员' },
+          path: '/person/supplier',
+          component: () => import('@/views/Person/Supplier.vue'),
+          meta: { hidden: true, title: '供应商' },
         },
         {
           path: '/person/admin',
           component: () => import('@/views/Person/Admin.vue'),
-          meta: { hidden: true, title: '系统管理员' },
+          meta: { hidden: true, title: '管理员' },
+        },
+        
+        {
+          path: '/person/personal',
+          component: () => import('@/views/Person/Personal.vue'),
+          meta: { hidden: true, title: '个人中心' },
         },
         {
-          path: '/person/supplier',
-          component: () => import('@/views/Person/Supplier.vue'),
-          meta: { hidden: true, title: '供应商' },
+          path: '/change',
+          component: () => import('@/views/Person/Change.vue'),
+          meta: { hidden: true, title: '修改密码' },
         },
       ],
     },

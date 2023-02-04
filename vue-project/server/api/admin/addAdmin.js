@@ -4,7 +4,8 @@ exports.post = (req, res) => {
   let name = req.body.name
   let pass = req.body.password
   let headimg = 'http://localhost:8888/uploads/' + req.file.filename
-  let sql = `insert into loginInfo values (${id},'${name}','${pass}','${headimg}','系统管理员')`
+  let job=req.body.job
+  let sql = `insert into loginInfo values (${id},'${name}','${pass}','${headimg}','${job}')`
   db.query(sql, (err, data) => {
     if (err) {
       return res.send('错误：' + err.message)

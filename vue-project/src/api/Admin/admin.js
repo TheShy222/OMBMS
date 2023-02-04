@@ -43,3 +43,18 @@ export const RequestEditAdmin = (formData) => {
   })
 }
 
+/**
+ * 修改密码接口
+ */
+export const RequestChangePass = (id,newpass) => {
+  return axiosInstance({
+    method: 'post',
+    url: '/changePass',
+    data: {
+      id,
+      newpass
+    }
+  })
+}
+
+

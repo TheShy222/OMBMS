@@ -155,6 +155,11 @@ export default {
         this.user={}
         this.user.integral=0
         this.getUsersList()
+      }else{
+        ElMessage({
+          message: '用户ID重复请换一个',
+          type: 'error',
+        })
       }
     },
     //编辑

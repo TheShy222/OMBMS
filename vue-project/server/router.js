@@ -21,23 +21,30 @@ router.post('/addUser', addUser.post)
 
 let editUser = require('./api/user/editUser.js')
 router.post('/editUser', editUser.post)
-//系统管理员模块
+//管理员模块
 let admin = require('./api/admin/admin.js')
 router.get('/adminsInfo', admin.get)
 
 let addAdmin = require('./api/admin/addAdmin.js')
 let uploadAddHeadimg = multer({ storage }).single('headimg')
-
 router.post('/addAdmin', uploadAddHeadimg, addAdmin.post)
+
 let deleAdmin = require('./api/admin/deleAdmin.js')
 router.get('/deleAdmin', deleAdmin.get)
+
+let changePass = require('./api/admin/changePass.js')
+router.post('/changePass', changePass.post)
 
 let editAdmin = require('./api/admin/editAdmin.js')
 let uploadEditHeadimg = multer({ storage }).single('headimg')
 router.post('/editAdmin', uploadEditHeadimg, editAdmin.post)
+
 //商品模块
 let goodsInfo = require('./api/goods/goodsInfo.js')
 router.get('/goodsInfo', goodsInfo.get)
+
+let getGoodsById = require('./api/goods/getGoodsById.js')
+router.get('/getGoodsById', getGoodsById.get)
 
 let goodsType = require('./api/goods/goodsType.js')
 router.get('/goodsType', goodsType.get)
@@ -116,20 +123,6 @@ router.get('/getRecommend', getRecommend.get)
 //公告模块
 let addFile = require('./api/notice/addFile.js')
 router.post('/addFile',addFile.post)
-//前台管理员模块
-let getReceptionAdmin = require('./api/receptionAdmin/getReceptionAdmin.js')
-router.get('/getReceptionAdmin',getReceptionAdmin.get)
-
-let addReceptionAdmin = require('./api/receptionAdmin/addReceptionAdmin.js')
-let uploadAddAdminimg = multer({ storage }).single('adminimg')
-router.post('/addReceptionAdmin',uploadAddAdminimg,addReceptionAdmin.post)
-
-let editReceptionAdmin = require('./api/receptionAdmin/editReceptionAdmin.js')
-let uploadEditAdminimg = multer({ storage }).single('adminimg')
-router.post('/editReceptionAdmin',uploadEditAdminimg,editReceptionAdmin.post)
-
-let deleteReceptionAdmin = require('./api/receptionAdmin/deleteReceptionAdmin.js')
-router.delete('/deleteReceptionAdmin',deleteReceptionAdmin.delete)
 //供应商模块
 let getSupplier = require('./api/supplier/supplier.js')
 router.get('/getSupplier',getSupplier.get)

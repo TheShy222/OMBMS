@@ -23,13 +23,13 @@
         <el-icon>
           <Avatar />
         </el-icon>
-        <router-link :to="{ path: '/person/admin' }">系统管理员</router-link>
+        <router-link :to="{ path: '/person/admin' }">管理员</router-link>
       </el-menu-item>
       <el-menu-item index="1-4">
         <el-icon>
           <HelpFilled />
         </el-icon>
-        <router-link :to="{ path: '/person/receptionAdmin' }">前台网页管理员</router-link>
+        <router-link :to="{ path: '/person/personal' }">个人中心</router-link>
       </el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">

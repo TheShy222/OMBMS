@@ -13,6 +13,7 @@
     </el-table-column>
     <el-table-column align="center" prop="name" label="账号" />
     <el-table-column align="center" prop="password" label="密码" />
+    <el-table-column align="center" prop="job" label="工作" />
     <el-table-column align="center" label="操作" #default="scope">
       <el-button type="primary" @click="edit(scope.row)">编辑</el-button>
       <el-popconfirm title="确认要删除此记录吗?" @confirm="dele(scope.row)">
@@ -23,7 +24,7 @@
     </el-table-column>
   </el-table>
   <!-- 添加弹框 -->
-  <el-dialog title="添加系统管理员" v-model="addShow" width="40%">
+  <el-dialog title="添加管理员" v-model="addShow" width="40%">
     <el-form :model="admin" label-width="80px">
       <el-form-item label="ID">
         <el-input v-model="admin.id"></el-input>
@@ -42,14 +43,20 @@
           </el-icon>
         </el-upload>
       </el-form-item>
+      <el-form-item label="工作">
+        <el-input v-model="admin.job"></el-input>
+      </el-form-item>
       <el-form-item>
         <el-button type="success" @click="addAdmin">确定</el-button>
       </el-form-item>
     </el-form>
   </el-dialog>
   <!-- 编辑弹框 -->
-  <el-dialog title="编辑系统管理员" v-model="editShow" width="40%">
+  <el-dialog title="编辑管理员" v-model="editShow" width="40%">
     <el-form :model="admin" label-width="80px">
+      <el-form-item label="ID">
+        <el-input disabled v-model="admin.id"></el-input>
+      </el-form-item>
       <el-form-item label="账号">
         <el-input v-model="admin.name"></el-input>
       </el-form-item>
@@ -63,6 +70,9 @@
             <Plus />
           </el-icon>
         </el-upload>
+      </el-form-item>
+      <el-form-item label="工作">
+        <el-input disabled v-model="admin.job"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="success" @click="editAdmin">确定</el-button>
@@ -85,7 +95,8 @@ export default {
         id: '',
         name: '',
         password: '',
-        headimg: ''
+        headimg: '',
+        job:''
       },
       list: [],
       addShow: false,
@@ -122,6 +133,7 @@ export default {
       formData.append('id', this.admin.id)
       formData.append('name', this.admin.name)
       formData.append('password', this.admin.password)
+      formData.append('job', this.admin.job)
       formData.append('headimg', this.imageFile)
       const res = await RequestAddAdmin(formData)
       if (res.data.code == 1) {
