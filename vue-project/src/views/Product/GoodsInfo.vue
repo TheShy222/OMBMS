@@ -15,11 +15,11 @@
   </el-row>
   <el-table :data="list" style="width: 100%" @selection-change="handleSelectionChange">
     <el-table-column type="selection" width="55" />
-    <el-table-column align="center" prop="id" label="ID" width="50" />
+    <el-table-column align="center" prop="id" label="商品ID" width="70" />
     <el-table-column align="center" prop="goodsId" label="货号" width="120" />
     <el-table-column align="center" prop="goodsShelves" label="货架号" width="80" />
-    <el-table-column align="center" prop="type" label="种类" width="100" />
-    <el-table-column align="center" prop="brand" label="品牌" width="100" />
+    <el-table-column align="center" prop="type" label="种类" width="80" />
+    <el-table-column align="center" prop="brand" label="品牌" width="80" />
     <el-table-column align="center" prop="size" label="尺码" width="80" />
     <el-table-column align="center" label="图片" #default="scope" width="200">
       <el-image :src="scope.row.picture" style="width: 100px; height: 100px">

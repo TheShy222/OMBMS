@@ -1,10 +1,10 @@
 let db = require('../db/index.js')
 
 exports.get = (req, res) => {
-    let id=req.query.searchId
+    let id=req.query.phoneNumber
     let sql=''
     if(id){
-        sql = `select * from issueOrder where orderNumber='${id}'`
+        sql = `select * from issueOrder where phoneNumber=${id}`
     }else{
         sql = `select * from issueOrder`
     }

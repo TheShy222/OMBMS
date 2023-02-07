@@ -7,11 +7,13 @@ exports.post = (req, res) => {
     let name=req.body.formData.name
     let phoneNumber=req.body.formData.phoneNumber
     let address=req.body.formData.address
-    let goodsId=req.body.formData.goodsId
+    let id=req.body.formData.id
     let price=req.body.formData.price
     let size=req.body.formData.size
-    let state=req.body.formData.state
-    let sql=`insert into issueOrder values ('${orderNumber}',${number},${totalPrice},'${name}',${phoneNumber},'${address}','${goodsId}',${price},'${size}','${state}','暂无')`
+    let detail=req.body.formData.detail
+    let url=req.body.formData.url
+    let state=req.body.formData.state || '未发货'
+    let sql=`insert into issueOrder values ('${orderNumber}',${id},${number},${totalPrice},'${name}',${phoneNumber},'${address}',${price},'${size}','${detail}','${url}','${state}','暂无')`
     db.query(sql, (err, data) => {
         if(err) {
             return res.send('错误：' + err.message)

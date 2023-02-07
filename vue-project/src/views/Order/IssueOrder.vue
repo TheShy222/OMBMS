@@ -22,7 +22,7 @@
     <el-table-column align="center" prop="name" label="姓名" width="80" />
     <el-table-column align="center" prop="phoneNumber" label="电话" width="120" />
     <el-table-column align="center" prop="address" label="地址" width="250" />
-    <el-table-column align="center" prop="goodsId" label="货号" width="150" />
+    <el-table-column align="center" prop="id" label="商品ID" width="150" />
     <el-table-column align="center" prop="size" label="尺码" width="80" />
     <el-table-column align="center" prop="number" label="数量" width="60" />
     <el-table-column align="center" prop="price" label="售价" width="100" />
@@ -53,8 +53,8 @@
       <el-form-item label="地址" prop="address">
         <el-input v-model="order.address"></el-input>
       </el-form-item>
-      <el-form-item label="货号" prop="goodsId">
-        <el-input v-model="order.goodsId"></el-input>
+      <el-form-item label="商品ID" prop="id">
+        <el-input v-model="order.id"></el-input>
       </el-form-item>
       <el-form-item label="尺码" prop="size">
         <el-input v-model="order.size"></el-input>
@@ -140,7 +140,7 @@ export default {
         name: '',
         phoneNumber: '',
         address: '',
-        goodsId: '',
+        id: '',
         size: '',
         number: '',
         price: '',
@@ -187,7 +187,6 @@ export default {
     //添加订单
     async addOrder() {
       const res = await RequestAddIssueOrder(this.order)
-      console.log(res.data)
       if (res.data.code == 1) {
         ElMessage({
           message: '添加订单成功!',

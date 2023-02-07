@@ -1,6 +1,6 @@
 import axiosInstance from '@/utils/request.js'
 /**
- * 商品信息接口
+ * 订单信息接口
  */
 export const RequestIssueOrder = (pageSize,pageNo,searchId) => {
   return axiosInstance({

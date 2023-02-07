@@ -12,6 +12,9 @@ const storage = multer.diskStorage({
 //登录模块
 let login = require('./api/login/login.js')
 router.post('/login', login.post)
+
+let userLogin = require('./api/login/userlogin.js')
+router.post('/userLogin', userLogin.post)
 //用户模块
 let user = require('./api/user/user.js')
 router.get('/usersInfo', user.get)
@@ -103,6 +106,13 @@ router.post('/goodsNumberChange', goodsNumberChange.post)
 
 let getExpressType = require('./api/order/expressType.js')
 router.get('/getExpressType', getExpressType.get)
+
+
+let deleteOrder = require('./api/order/deleteOrder.js')
+router.get('/deleteOrder', deleteOrder.get)
+
+let getOrderByOrderNumber = require('./api/order/getOrderByOrderNumber.js')
+router.get('/issueOrderByOrderNumber', getOrderByOrderNumber.get)
 //轮播模块
 let getCarousel = require('./api/carousel/carousel.js')
 router.get('/getCarousel', getCarousel.get)

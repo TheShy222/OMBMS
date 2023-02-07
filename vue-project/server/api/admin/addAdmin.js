@@ -4,7 +4,7 @@ exports.post = (req, res) => {
   let name = req.body.name
   let pass = req.body.password
   let headimg = 'http://localhost:8888/uploads/' + req.file.filename
-  let job=req.body.job
+  let job = req.body.job
   let sql = `insert into loginInfo values (${id},'${name}','${pass}','${headimg}','${job}')`
   db.query(sql, (err, data) => {
     if (err) {
