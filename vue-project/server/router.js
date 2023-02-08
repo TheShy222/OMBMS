@@ -113,6 +113,12 @@ router.get('/deleteOrder', deleteOrder.get)
 
 let getOrderByOrderNumber = require('./api/order/getOrderByOrderNumber.js')
 router.get('/issueOrderByOrderNumber', getOrderByOrderNumber.get)
+
+let orderSuccess = require('./api/order/orderSuccess.js')
+router.get('/orderSuccess', orderSuccess.get)
+
+let shippedOrder = require('./api/order/shippedOrder.js')
+router.get('/shippedOrder', shippedOrder.get)
 //轮播模块
 let getCarousel = require('./api/carousel/carousel.js')
 router.get('/getCarousel', getCarousel.get)
