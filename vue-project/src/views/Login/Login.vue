@@ -29,7 +29,7 @@
                     </el-radio-group>
                 </el-form-item>
                 <el-row class="bottom">
-                    <el-button type="success" @click="register">前台</el-button>
+                    <!-- <el-button type="success" @click="register">前台</el-button> -->
                     <el-button type="primary" @click="bindLogin" class="elbt">登录</el-button>
                 </el-row>
             </el-form>

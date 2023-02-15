@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="3000" arrow="always">
+  <el-carousel :interval="3000" arrow="always" v-if="carouselList.length>0">
     <!-- 轮播区域 -->
     <el-carousel-item v-for="item in carouselList" :key="item.carouselid">
       <img :src=item.url>

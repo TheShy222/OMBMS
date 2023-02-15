@@ -2,8 +2,8 @@
   <el-row :gutter="20" style="margin-bottom: 10px">
     <el-col :span="8">
       <el-button type="success" round @click="addShow=true">新增</el-button>
-      <el-button type="warning" round @click="ascOrder">升序排列</el-button>
-      <el-button type="danger" round @click="descOrder">降序排列</el-button>
+      <el-button type="warning" round @click="ascOrder">新用户</el-button>
+      <el-button type="danger" round @click="descOrder">优质用户</el-button>
       <el-button type="info" round @click="refresh">刷新</el-button>
     </el-col>
     <el-col :span="8">
@@ -31,13 +31,16 @@
   <el-dialog title="新增用户" v-model="addShow" width="40%">
         <el-form :model="user" label-width="80px">
             <el-form-item label="ID">
-                <el-input v-model="user.id"></el-input>
+                <el-input  disabled v-model="user.id"></el-input>
             </el-form-item>
             <el-form-item label="姓名">
                 <el-input v-model="user.name"></el-input>
             </el-form-item>
             <el-form-item label="电话">
                 <el-input v-model="user.phoneNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+                <el-input v-model="user.password"></el-input>
             </el-form-item>
             <el-form-item label="地址">
                 <el-input v-model="user.address"></el-input>
@@ -58,6 +61,9 @@
             </el-form-item>
             <el-form-item label="电话">
                 <el-input v-model="user.phoneNumber"></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+                <el-input v-model="user.password"></el-input>
             </el-form-item>
             <el-form-item label="地址">
                 <el-input v-model="user.address"></el-input>
@@ -80,9 +86,11 @@ export default {
       user: {
         id: '',
         name: '',
-        phoneNumber: '',
+        phoneNumber: 0,
+        password:'',
         address: '',
-        integral: 0
+        integral: 0,
+        userImg:''
       },
       list: [],
       total: '', // 总记录条数
@@ -126,7 +134,8 @@ export default {
       this.searchId = ''
       this.addShow=false
       this.editShow=false
-      this.user={}
+      this.user = {}
+      this.user.id=Date.now()*2
       this.user.integral=0
       this.getUsersList()
     },
@@ -144,7 +153,8 @@ export default {
       this.pageNo = value
       this.getUsersList()
     },
-    async addUser(){
+    //添加用户
+    async addUser() {
       const res = await RequestAddUser(this.user)
       if (res.data.code == 1) {
         ElMessage({
@@ -152,7 +162,8 @@ export default {
           type: 'success',
         })
         this.addShow=false
-        this.user={}
+        this.user = {}
+        this.user.id=Date.now()*2
         this.user.integral=0
         this.getUsersList()
       }else{
@@ -175,7 +186,7 @@ export default {
           type: 'success',
         })
         this.editShow=false
-        this.user={}
+        this.user = {}
         this.user.integral=0
         this.getUsersList()
       }
