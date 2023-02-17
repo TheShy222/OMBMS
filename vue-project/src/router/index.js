@@ -147,7 +147,7 @@ const router = createRouter({
         {
           path: '/order/delivery',
           component: () => import('@/views/Order/Delivery.vue'),
-          meta: { hidden: true, title: '配送方式管理' },
+          meta: { hidden: true, title: '配送方式' },
         },
       ],
     },

@@ -103,10 +103,20 @@ router.post('/editIssueOrder', editIssueOrder.post)
 
 let goodsNumberChange = require('./api/order/goodsNumberChange.js')
 router.post('/goodsNumberChange', goodsNumberChange.post)
-
+//物流
 let getExpressType = require('./api/order/expressType.js')
 router.get('/getExpressType', getExpressType.get)
 
+let addExpress = require('./api/express/addExpress.js')
+let uploadExpressLogo = multer({ storage }).single('logo')
+router.post('/addExpress',uploadExpressLogo,addExpress.post)
+
+let editExpress = require('./api/express/editExpress.js')
+let editExpressLogo = multer({ storage }).single('logo')
+router.put('/editExpress', editExpressLogo, editExpress.put)
+
+let deleteExpress = require('./api/express/deleteExpress.js')
+router.delete('/deleteExpress', deleteExpress.delete)
 
 let deleteOrder = require('./api/order/deleteOrder.js')
 router.get('/deleteOrder', deleteOrder.get)
