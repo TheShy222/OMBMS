@@ -103,6 +103,17 @@ router.post('/editIssueOrder', editIssueOrder.post)
 
 let goodsNumberChange = require('./api/order/goodsNumberChange.js')
 router.post('/goodsNumberChange', goodsNumberChange.post)
+
+//入库订单
+let receiptOrder = require('./api/order/getReceiptOrder.js')
+router.get('/receiptOrder', receiptOrder.get)
+
+let addReceiptOrder = require('./api/order/addReceiptOrder.js')
+router.post('/addReceiptOrder', addReceiptOrder.post)
+
+let editReceiptOrder = require('./api/order/editReceiptOrder.js')
+router.put('/editReceiptOrder', editReceiptOrder.put)
+
 //物流
 let getExpressType = require('./api/order/expressType.js')
 router.get('/getExpressType', getExpressType.get)
@@ -160,5 +171,19 @@ let deleteSupplier = require('./api/supplier/deleteSupplier.js')
 router.delete('/deleteSupplier',deleteSupplier.delete)
 
 let editSupplier = require('./api/supplier/editSupplier.js')
-router.put('/editSupplier',editSupplier.put)
+router.put('/editSupplier', editSupplier.put)
+//评论模块
+let getComment = require('./api/comment/getComment.js')
+router.get('/getComment', getComment.get)
+
+let addComment = require('./api/comment/addComment.js')
+let addCommentImg = multer({ storage }).single('commentImg')
+router.post('/addComment', addCommentImg, addComment.post)
+
+let editComment = require('./api/comment/editComment.js')
+let editCommentImg = multer({ storage }).single('commentImg')
+router.put('/editComment', editCommentImg, editComment.put)
+
+let deleteComment = require('./api/comment/deleteComment.js')
+router.delete('/deleteComment', deleteComment.delete)
 module.exports = router

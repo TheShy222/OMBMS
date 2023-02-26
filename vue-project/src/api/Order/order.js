@@ -80,3 +80,41 @@ export const RequestGoodsNumberChange = (formData) => {
       }
   })
 }
+/**
+ * 入库订单信息接口
+ */
+export const RequestReceiptOrder = (pageSize,pageNo,searchId) => {
+  return axiosInstance({
+      method: 'get',
+      url: '/receiptOrder',
+      params:{
+          pageSize,
+          pageNo,
+          searchId,
+      }
+  })
+}
+/**
+ * 新增入库订单接口
+ */
+export const RequestAddReceiptOrder = (formData) => {
+  return axiosInstance({
+      method: 'post',
+      url: '/addReceiptOrder',
+      data:{
+        formData
+      }
+  })
+}
+/**
+ * 编辑入库订单接口
+ */
+export const RequestEditReceiptOrder = (formData) => {
+  return axiosInstance({
+      method: 'put',
+      url: '/editReceiptOrder',
+      data:{
+        formData
+      }
+  })
+}
