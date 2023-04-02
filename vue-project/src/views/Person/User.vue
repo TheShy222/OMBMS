@@ -86,7 +86,7 @@ export default {
       user: {
         id: '',
         name: '',
-        phoneNumber: 0,
+        phoneNumber: '',
         password:'',
         address: '',
         integral: 0,

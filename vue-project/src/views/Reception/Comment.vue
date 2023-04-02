@@ -99,7 +99,7 @@ export default {
             }
         },
         //编辑评论
-        async bindEdit(row) {
+        bindEdit(row) {
             this.type = 'EDIT'
             this.commentInfo = row
             this.show = true

@@ -153,10 +153,33 @@ router.get('/deleteCarousel', deleteCarousel.get)
 
 let editCarousel = require('./api/carousel/editCarousel.js')
 let uploadEditUrl = multer({ storage }).single('url')
-router.post('/editCarousel', uploadEditUrl,editCarousel.post)
+router.post('/editCarousel', uploadEditUrl, editCarousel.post)
+
+//售后订单模块
+let getAfterSaleOrder = require('./api/afterSaleOrder/getAfterSaleOrder.js')
+router.get('/getAfterSaleOrder', getAfterSaleOrder.get)
+
+let addAfterSaleOrder = require('./api/afterSaleOrder/addAfterSaleOrder.js')
+router.post('/addAfterSaleOrder', addAfterSaleOrder.post)
+
+let deleteAfterSaleOrder = require('./api/afterSaleOrder/deleteAfterSaleOrder.js')
+router.delete('/deleteAfterSaleOrder',deleteAfterSaleOrder.delete)
+
 //推荐模块
 let getRecommend = require('./api/recommend/recommend.js')
 router.get('/getRecommend', getRecommend.get)
+
+let deleteRecommend = require('./api/recommend/deleteRecommend.js')
+router.delete('/deleteRecommend', deleteRecommend.delete)
+
+let addRecommend = require('./api/recommend/addRecommend.js')
+let addRecommendImg = multer({ storage }).single('recommendImg')
+router.post('/addRecommend', addRecommendImg, addRecommend.post)
+
+let editRecommend = require('./api/recommend/editRecommend.js')
+let editRecommendImg = multer({ storage }).single('recommendImg')
+router.put('/editRecommend', editRecommendImg, editRecommend.put)
+
 //公告模块
 let addFile = require('./api/notice/addFile.js')
 router.post('/addFile',addFile.post)

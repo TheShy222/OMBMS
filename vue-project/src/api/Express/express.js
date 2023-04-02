@@ -11,7 +11,7 @@ export const RequestAddExpress = (formData) => {
   })
 }
 /**
-* 添加物流方式接口
+* 编辑物流方式接口
 */
 export const RequestEditExpress = (formData) => {
   return axiosInstance({
