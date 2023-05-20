@@ -77,10 +77,9 @@ export default {
     },
     created() {
         this.getGoodsSize()
+        this.getSupplier()
         if (this.type === 'EDIT') {
             this.orderInfo = { ...this.order }
-        } else {
-            this.getSupplier()
         }
     },
     methods: {

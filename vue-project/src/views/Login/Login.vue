@@ -1,7 +1,7 @@
 <template>
     <div id="g-container">
         <div class="g-wrapper">
-            <h2>商城后台管理系统</h2>
+            <h2>线上商城后台管理系统</h2>
             <el-form class="g-login" :rules="rules" :model="admin" ref="loginFormRef">
                 <el-form-item prop="name">
                     <el-input placeholder="请输入用户名" v-model="admin.name">
