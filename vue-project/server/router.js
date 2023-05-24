@@ -155,7 +155,7 @@ let editCarousel = require('./api/carousel/editCarousel.js')
 let uploadEditUrl = multer({ storage }).single('url')
 router.post('/editCarousel', uploadEditUrl, editCarousel.post)
 
-//售后订单模块
+//退货订单模块
 let getAfterSaleOrder = require('./api/afterSaleOrder/getAfterSaleOrder.js')
 router.get('/getAfterSaleOrder', getAfterSaleOrder.get)
 

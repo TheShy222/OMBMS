@@ -111,6 +111,7 @@ export default {
 
         h2 {
             color: #fff;
+            margin-top: 10px;
             margin-bottom: 20px;
         }
 

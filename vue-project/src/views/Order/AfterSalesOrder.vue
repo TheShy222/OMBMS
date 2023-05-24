@@ -172,7 +172,7 @@ export default {
             const res = await RequestDeleteAfterSaleOrder(orderNumber)
             if (res.data.code == 1) {
                 ElMessage({
-                    message: '删除售后订单成功!',
+                    message: '删除退货订单成功!',
                     type: 'success',
                 })
                 this.refresh()

@@ -142,7 +142,7 @@ const router = createRouter({
         {
           path: '/order/afterSalesOrder',
           component: () => import('@/views/Order/AfterSalesOrder.vue'),
-          meta: { hidden: true, title: '售后订单' },
+          meta: { hidden: true, title: '退货订单' },
         },
         {
           path: '/order/delivery',
