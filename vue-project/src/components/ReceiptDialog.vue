@@ -1,8 +1,5 @@
 <template>
     <el-form :model="orderInfo" label-width="80px">
-        <el-form-item label="进货单">
-            <el-input disabled v-model="orderInfo.orderNumber"></el-input>
-        </el-form-item>
         <el-form-item label="供应商">
             <el-select
                 v-model="orderInfo.name"

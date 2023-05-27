@@ -1,16 +1,16 @@
 let db = require('../db/index.js')
 //获取管理员列表
-exports.post=(req,res)=>{
-    let id=req.body.carouselId
+exports.post = (req, res) => {
+    let id = Number(Date.now().toString().slice(-6))
     let url = 'http://localhost:8888/uploads/' + req.file.filename
-    let sql=`insert into carousel values (${id},'${url}')`
-    db.query(sql,(err,data)=>{
-      if (err) {
-        return res.send('错误：' + err.message)
-      }
-      res.send({
-        code: 1,
-        msg:'success'
-      })
+    let sql = `insert into carousel values (${id},'${url}')`
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.send('错误：' + err.message)
+        }
+        res.send({
+            code: 1,
+            msg: 'success',
+        })
     })
 }

@@ -21,9 +21,6 @@
   <!-- 添加弹框 -->
   <el-dialog title="添加轮播图" v-model="addShow" width="40%">
     <el-form :model="carouselInfo" label-width="80px">
-      <el-form-item label="ID">
-        <el-input v-model="carouselInfo.carouselId"></el-input>
-      </el-form-item>
       <el-form-item label="轮播图">
         <el-upload list-type="picture-card" :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar" />
@@ -89,7 +86,6 @@ export default {
     //添加轮播图
     async AddCarousel() {
       const formData = new FormData()
-      formData.append('carouselId', this.carouselInfo.carouselId)
       formData.append('url', this.imageFile)
       const res = await RequestAddCarousel(formData)
       if (res.data.code == 1) {

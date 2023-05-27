@@ -24,9 +24,6 @@
   <!-- 添加弹框 -->
   <el-dialog title="添加供应商" v-model="addShow" width="40%">
     <el-form :model="supplier" label-width="80px">
-      <el-form-item label="ID">
-        <el-input v-model="supplier.supplierid"></el-input>
-      </el-form-item>
       <el-form-item label="名称">
         <el-input v-model="supplier.name"></el-input>
       </el-form-item>
@@ -91,7 +88,7 @@ const getSupplier = async () => {
 getSupplier()
 //添加供应商
 let addShow = ref(false)
-const supplier = ref({ supplierid: '', name: '', phoneNumber: '', address: '', mainbusiness: '', ltt: '' })
+const supplier = ref({name: '', phoneNumber: '', address: '', mainbusiness: '', ltt: '' })
 const addSupplier = async () => {
   const res = await RequestAddSupplier(supplier.value)
   if (res.data.code == 1) {

@@ -7,7 +7,7 @@
       <el-button type="info" round @click="refresh">刷新</el-button>
     </el-col>
     <el-col :span="8">
-      <el-input v-model="searchId" placeholder="搜索" clearable></el-input>
+      <el-input v-model="searchId" placeholder="电话号码搜索" clearable></el-input>
     </el-col>
     <el-col :span="8">
       <el-button type="warning" @click="bindSearch">搜索用户</el-button>
@@ -30,9 +30,6 @@
   <!-- 新增弹框 -->
   <el-dialog title="新增用户" v-model="addShow" width="40%">
         <el-form :model="user" label-width="80px">
-            <el-form-item label="ID">
-                <el-input  disabled v-model="user.id"></el-input>
-            </el-form-item>
             <el-form-item label="姓名">
                 <el-input v-model="user.name"></el-input>
             </el-form-item>

@@ -3,7 +3,7 @@ let db = require('../db/index.js')
 exports.post=(req,res)=>{
     let id=req.body.id
     let newpass=req.body.newpass
-    let sql=`update logininfo set password='${newpass}' where id=${id}`
+    let sql=`update admin set password='${newpass}' where id=${id}`
     db.query(sql,(err,data)=>{
       if (err) {
         return res.send('错误：' + err.message)

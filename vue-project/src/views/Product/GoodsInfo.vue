@@ -44,9 +44,9 @@
   <!-- 添加的弹框 -->
   <el-dialog title="添加商品" v-model="addShow" width="40%">
     <el-form :model="goodsInfo" label-width="80px">
-      <el-form-item label="ID" prop="id">
+      <!-- <el-form-item label="ID" prop="id">
         <el-input v-model="goodsInfo.id"></el-input>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="货号" prop="goodsId">
         <el-input v-model="goodsInfo.goodsId"></el-input>
       </el-form-item>
@@ -227,7 +227,6 @@ export default {
     //添加商品
     async addGoods() {
       const formData = new FormData()
-      formData.append('id', this.goodsInfo.id)
       formData.append('goodsId', this.goodsInfo.goodsId)
       formData.append('goodsShelves', this.goodsInfo.goodsShelves)
       formData.append('type', this.goodsInfo.type)
@@ -270,7 +269,7 @@ export default {
       this.imageUrl = URL.createObjectURL(rawFile)
       // 上传图片
       this.imageFile = rawFile
-      return false // 不向下执行
+      return false
     },
     //删除商品
     async deleteGoods(row) {

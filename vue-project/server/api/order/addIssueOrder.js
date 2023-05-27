@@ -1,7 +1,7 @@
 let db = require('../db/index.js')
 
 exports.post = (req, res) => {
-    let orderNumber=req.body.formData.orderNumber
+    let orderNumber = Date.now().toString()
     let number=req.body.formData.number
     let totalPrice=req.body.formData.totalPrice
     let name=req.body.formData.name

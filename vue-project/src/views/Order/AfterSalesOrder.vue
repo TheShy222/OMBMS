@@ -46,9 +46,6 @@
     <!-- 添加的弹框 -->
     <el-dialog title="添加退货订单" v-model="addShow" width="40%">
         <el-form :model="order" label-width="80px">
-            <el-form-item label="订单号" prop="orderNumber">
-                <el-input disabled v-model="order.orderNumber"></el-input>
-            </el-form-item>
             <el-form-item label="退货理由" prop="cause">
                 <el-input v-model="order.cause"></el-input>
             </el-form-item>
@@ -129,6 +126,12 @@ export default {
             if (res.data.code == 1) {
                 this.list = res.data.list
                 this.total = res.data.total
+            } 
+            if (!this.total) {
+                ElMessage({
+                    message: '未找到该订单!',
+                    type: 'info',
+                })
             }
         },
         async getExpressType() {

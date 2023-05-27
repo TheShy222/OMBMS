@@ -1,13 +1,14 @@
 let db = require('../db/index.js')
 
 exports.get = (req, res) => {
-    let id=req.query.phoneNumber
+    let id = req.query.searchId
     let sql=''
     if(id){
-        sql = `select * from issueOrder where phoneNumber=${id}`
+        sql = `select * from issueOrder where orderNumber='${id}'`
     }else{
         sql = `select * from issueOrder`
     }
+    console.log(sql);
     db.query(sql, (err, result) => {
         if(err) {
             return res.send('错误：' + err.message)

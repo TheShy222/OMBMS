@@ -1,8 +1,5 @@
 <template>
     <el-form :model="recommendInfo" label-width="80px">
-        <el-form-item label="ID">
-            <el-input disabled v-model="recommendInfo.id"></el-input>
-        </el-form-item>
         <el-form-item label="图片">
             <el-upload
                 list-type="picture-card"

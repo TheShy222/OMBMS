@@ -6,11 +6,11 @@ exports.post = (req, res) => {
   let identity=req.body.identity
   let sql=''
   if(identity==0){
-    sql = `select * from logininfo where name='${name}' and password='${pass}' and job='系统管理员'`
+    sql = `select * from admin where name='${name}' and password='${pass}' and job='系统管理员'`
   }else if(identity==1){
-    sql = `select * from logininfo where name='${name}' and password='${pass}' and job='前台网页管理员'`
+    sql = `select * from admin where name='${name}' and password='${pass}' and job='前台网页管理员'`
   }else{
-    sql = `select * from logininfo where name='${name}' and password='${pass}' and job='超级管理员'`
+    sql = `select * from admin where name='${name}' and password='${pass}' and job='超级管理员'`
   }
   db.query(sql, (err, data) => {
     if (err) {

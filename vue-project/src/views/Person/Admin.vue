@@ -26,9 +26,6 @@
   <!-- 添加弹框 -->
   <el-dialog title="添加管理员" v-model="addShow" width="40%">
     <el-form :model="admin" label-width="80px">
-      <el-form-item label="ID">
-        <el-input v-model="admin.id"></el-input>
-      </el-form-item>
       <el-form-item label="账号">
         <el-input v-model="admin.name"></el-input>
       </el-form-item>
@@ -54,9 +51,6 @@
   <!-- 编辑弹框 -->
   <el-dialog title="编辑管理员" v-model="editShow" width="40%">
     <el-form :model="admin" label-width="80px">
-      <el-form-item label="ID">
-        <el-input disabled v-model="admin.id"></el-input>
-      </el-form-item>
       <el-form-item label="账号">
         <el-input v-model="admin.name"></el-input>
       </el-form-item>
@@ -130,7 +124,6 @@ export default {
     },
     async addAdmin() {
       const formData = new FormData()
-      formData.append('id', this.admin.id)
       formData.append('name', this.admin.name)
       formData.append('password', this.admin.password)
       formData.append('job', this.admin.job)

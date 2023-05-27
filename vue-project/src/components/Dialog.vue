@@ -1,8 +1,5 @@
 <template>
     <el-form :model="expressInfo" label-width="80px">
-        <el-form-item label="ID">
-            <el-input disabled v-model="expressInfo.id"></el-input>
-        </el-form-item>
         <el-form-item label="名称">
             <el-input v-model="expressInfo.type"></el-input>
         </el-form-item>

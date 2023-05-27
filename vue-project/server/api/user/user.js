@@ -1,11 +1,11 @@
 let db = require('../db/index.js')
 
 exports.get = (req, res) => {
-    let id = req.query.searchId
+    let phoneNumber = req.query.searchId
     let asc = req.query.asc
     let desc = req.query.desc
-    if (id) {
-        sql = `select * from userinfo where phoneNumber='${id}'`
+    if (phoneNumber) {
+        sql = `select * from userinfo where phoneNumber='${phoneNumber}'`
     }
     else if (asc) {
         sql = `select * from userinfo order by integral asc`
