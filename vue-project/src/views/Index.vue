@@ -52,7 +52,9 @@ export default {
     methods: {
         drawBar() {
             const echart1 = echarts.init(document.getElementById('main'))
-            document.getElementById("main")?.removeAttribute("_echarts_instance_");//解决第一次图表不显示问题
+            document
+                .getElementById('main')
+                ?.removeAttribute('_echarts_instance_') //解决第一次图表不显示问题
             echart1.setOption({
                 title: {
                     text: '商品销量和收入',
@@ -116,7 +118,9 @@ export default {
         },
         drawBar2() {
             const echart2 = echarts.init(document.getElementById('main2'))
-            document.getElementById("main2")?.removeAttribute("_echarts_instance_");
+            document
+                .getElementById('main2')
+                ?.removeAttribute('_echarts_instance_')
             echart2.setOption({
                 title: {
                     text: '商品库存',
@@ -196,7 +200,9 @@ export default {
         },
         drawBar3() {
             const echart3 = echarts.init(document.getElementById('main3'))
-            document.getElementById("main3")?.removeAttribute("_echarts_instance_");
+            document
+                .getElementById('main3')
+                ?.removeAttribute('_echarts_instance_')
             echart3.setOption({
                 title: {
                     text: '订单量',
@@ -298,7 +304,9 @@ export default {
         },
         drawBar4() {
             const echart4 = echarts.init(document.getElementById('main4'))
-            document.getElementById("main4")?.removeAttribute("_echarts_instance_");
+            document
+                .getElementById('main4')
+                ?.removeAttribute('_echarts_instance_')
             echart4.setOption({
                 title: {
                     text: '商品种类销量',
@@ -364,6 +372,9 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
     .top {
         display: flex;
         width: 100%;

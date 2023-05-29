@@ -36,7 +36,8 @@ let deleAdmin = require('./api/admin/deleAdmin.js')
 router.get('/deleAdmin', deleAdmin.get)
 
 let changePass = require('./api/admin/changePass.js')
-router.post('/changePass', changePass.post)
+let changeHeadimg = multer({ storage }).single('headimg')
+router.post('/changePass', changeHeadimg,changePass.post)
 
 let editAdmin = require('./api/admin/editAdmin.js')
 let uploadEditHeadimg = multer({ storage }).single('headimg')

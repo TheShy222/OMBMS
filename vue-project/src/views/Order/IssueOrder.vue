@@ -81,7 +81,7 @@
     >
     </el-pagination>
     <!-- 添加的弹框 -->
-    <el-dialog title="添加订单" v-model="addShow" width="40%">
+    <el-dialog title="新增出库订单" v-model="addShow" width="40%">
         <el-form :model="order" label-width="80px">
             <el-form-item label="姓名" prop="name">
                 <el-input v-model="order.name"></el-input>
@@ -130,7 +130,7 @@
         </el-form>
     </el-dialog>
     <!-- 编辑的弹框 -->
-    <el-dialog title="编辑订单" v-model="editShow" width="40%">
+    <el-dialog title="编辑出库订单" v-model="editShow" width="40%">
         <el-form :model="order" label-width="80px">
             <el-form-item label="姓名" prop="name">
                 <el-input v-model="order.name"></el-input>

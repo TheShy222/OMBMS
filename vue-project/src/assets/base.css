@@ -63,4 +63,7 @@ input:-webkit-autofill {
   -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
   -webkit-box-shadow: 0 0 0 1000px white inset;
 }
+::-webkit-scrollbar {
+	display: none;
+}
 

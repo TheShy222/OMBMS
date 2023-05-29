@@ -101,7 +101,7 @@ const router = createRouter({
         {
           path: '/change',
           component: () => import('@/views/Person/Change.vue'),
-          meta: { hidden: true, title: '修改密码' },
+          meta: { hidden: true, title: '修改个人信息' },
         },
       ],
     },
@@ -119,7 +119,7 @@ const router = createRouter({
         {
           path: '/product/goodsCategory',
           component: () => import('@/views/Product/GoodsCategory.vue'),
-          meta: { hidden: true, title: '商品分类' },
+          meta: { hidden: true, title: '商品种类' },
         },
       ],
      },

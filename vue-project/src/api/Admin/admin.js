@@ -46,14 +46,12 @@ export const RequestEditAdmin = (formData) => {
 /**
  * 修改密码接口
  */
-export const RequestChangePass = (id,newpass) => {
+export const RequestChangePass = (formData) => {
   return axiosInstance({
     method: 'post',
     url: '/changePass',
-    data: {
-      id,
-      newpass
-    }
+    headers: { "Content-Type": 'multipart/form-data'},
+    data: formData
   })
 }
 

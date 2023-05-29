@@ -63,7 +63,7 @@
                     <FolderOpened />
                 </el-icon>
                 <router-link :to="{ path: '/product/goodsCategory' }"
-                    >商品分类</router-link
+                    >商品种类</router-link
                 >
             </el-menu-item>
         </el-sub-menu>
